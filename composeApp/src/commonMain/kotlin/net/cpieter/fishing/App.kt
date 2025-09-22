@@ -73,7 +73,8 @@ fun App() {
 
                     // Button
                     Button(onClick = {
-                        fishText = catch()
+                        val fish = catch()
+                        fishText = "You caught a ${fish.species.name.lowercase()} that is ${fish.weight} kg and worth ${fish.value.format()} geld"
                     },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.White,
