@@ -20,11 +20,12 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
+
 import fishing.composeapp.generated.resources.Res
 import fishing.composeapp.generated.resources.fishing_rod
 import fishing.composeapp.generated.resources.lake
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 @Preview
@@ -41,24 +42,23 @@ fun App() {
                 painter = painterResource(Res.drawable.lake),
                 contentDescription = "lake",
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.Crop
             )
 
             // Foreground
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize()
             ) {
                 // Empty space for upper half
                 Spacer(modifier = Modifier.weight(2f))
 
                 // Lower half with centered content
                 Column(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .weight(3f),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(3f),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
+                    verticalArrangement = Arrangement.Center
                 ) {
                     Spacer(modifier = Modifier.weight(1f))
 
@@ -66,30 +66,27 @@ fun App() {
                         text = fishText,
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
+                        textAlign = TextAlign.Center
                     )
 
                     Spacer(modifier = Modifier.weight(1f))
 
                     // Button
-                    Button(
-                        onClick = {
-                            val fish = catch()
-                            fishText =
-                                "You caught a ${fish.species.name.lowercase()} that is ${fish.weight} kg and worth ${fish.value.format()} geld"
-                        },
-                        colors =
-                            ButtonDefaults.buttonColors(
-                                containerColor = Color.White,
-                                contentColor = Color.DarkGray,
-                            ),
+                    Button(onClick = {
+                        val fish = catch()
+                        fishText = "You caught a ${fish.species.name.lowercase()} that is ${fish.weight} kg and worth ${fish.value.format()} geld"
+                    },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.DarkGray
+                        )
                     ) {
                         Image(
                             painter = painterResource(Res.drawable.fishing_rod),
                             contentDescription = "fish",
                             colorFilter = ColorFilter.tint(Color.DarkGray),
                             modifier = Modifier.size(48.dp),
-                            contentScale = ContentScale.Fit,
+                            contentScale = ContentScale.Fit
                         )
                     }
 
