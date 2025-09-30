@@ -1,5 +1,7 @@
 package net.cpieter.fishing
 
+import kotlin.math.roundToInt
+
 val allSpecies = listOf(
     FishSpecies("Salmon",   2..7,    2.2),
     FishSpecies("Tuna",     50..400, 3.0),
@@ -20,8 +22,8 @@ class Fish(
     val species: FishSpecies,
     val weight: Int,
 ) {
-    val value: Double
-        get() = weight * species.valueMultiplier
+    val value: Int
+        get() = (weight * species.valueMultiplier).roundToInt()
 }
 
 class FishSpecies(
