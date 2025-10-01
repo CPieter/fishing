@@ -4,13 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -28,16 +26,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import fishing.composeapp.generated.resources.Res
-import fishing.composeapp.generated.resources.fish_bucket
 import fishing.composeapp.generated.resources.fishing_rod
 import fishing.composeapp.generated.resources.lake
 import fishing.composeapp.generated.resources.salmon
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun FishingScreen(
-    player: Player
-) {
+@Preview
+fun FishingScreen() {
+    val player by LocalPlayer.current
     var catch by remember { mutableStateOf<Fish?>(null)}
 
     Box(
@@ -64,37 +62,10 @@ fun FishingScreen(
                 textAlign = TextAlign.Center
             )
 
-            Button(onClick = { // Inventory button
-                val fish = catch()
-                player.inventory += fish
-                catch = fish
-                player.score += fish.value
-            },
-                shape = RoundedCornerShape ( 12.dp),
-                contentPadding = PaddingValues(0.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.DarkGray
-                ),
-                modifier = Modifier
-                    .padding(start = 16.dp)
-                    .size(56.dp)
-            ){
-                Image(
-                    painter = painterResource(Res.drawable.fish_bucket),
-                    contentDescription = "inventory",
-                    modifier = Modifier.size(48.dp),
-                    contentScale = ContentScale.Fit
-                )
-            }
+
+
             // Empty space for upper half
             Spacer(modifier = Modifier.weight(2f))
-            Text(
-                text = "Inventory: ${player.inventory.joinToString { it.species.name }}",
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
 
             // Lower half with centered content
             Column(
